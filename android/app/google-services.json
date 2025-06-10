@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "254268454293",
+    "project_id": "kpps-efeaf",
+    "storage_bucket": "kpps-efeaf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254268454293:android:8ac5bc57267160f0d2b29c",
+        "android_client_info": {
+          "package_name": "com.example.kpps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5QJu3nFjSe2khKVL5iTJNTiEq0iiQ-XQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

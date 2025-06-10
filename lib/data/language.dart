@@ -1,0 +1,351 @@
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+
+final languageList = {
+  'af': 'Afrikaans',
+  'sq': 'Albanian',
+  'am': 'Amharic',
+  'ar': 'Arabic',
+  'hy': 'Armenian',
+  'az': 'Azerbaijani',
+  'eu': 'Basque',
+  'be': 'Belarusian',
+  'bn': 'Bengali',
+  'bs': 'Bosnian',
+  'bg': 'Bulgarian',
+  'ca': 'Catalan',
+  'ceb': 'Cebuano',
+  'ny': 'Chichewa',
+  'zh-cn': 'Chinese Simplified',
+  'zh-tw': 'Chinese Traditional',
+  'co': 'Corsican',
+  'hr': 'Croatian',
+  'cs': 'Czech',
+  'da': 'Danish',
+  'nl': 'Dutch',
+  'en': 'English',
+  'eo': 'Esperanto',
+  'et': 'Estonian',
+  'tl': 'Filipino',
+  'fi': 'Finnish',
+  'fr': 'French',
+  'fy': 'Frisian',
+  'gl': 'Galician',
+  'ka': 'Georgian',
+  'de': 'German',
+  'el': 'Greek',
+  'gu': 'Gujarati',
+  'ht': 'Haitian Creole',
+  'ha': 'Hausa',
+  'haw': 'Hawaiian',
+  'iw': 'Hebrew',
+  'hi': 'Hindi',
+  'hmn': 'Hmong',
+  'hu': 'Hungarian',
+  'is': 'Icelandic',
+  'ig': 'Igbo',
+  'id': 'Indonesian',
+  'ga': 'Irish',
+  'it': 'Italian',
+  'ja': 'Japanese',
+  'jw': 'Javanese',
+  'kn': 'Kannada',
+  'kk': 'Kazakh',
+  'km': 'Khmer',
+  'ko': 'Korean',
+  'ku': 'Kurdish (Kurmanji)',
+  'ky': 'Kyrgyz',
+  'lo': 'Lao',
+  'la': 'Latin',
+  'lv': 'Latvian',
+  'lt': 'Lithuanian',
+  'lb': 'Luxembourgish',
+  'mk': 'Macedonian',
+  'mg': 'Malagasy',
+  'ms': 'Malay',
+  'ml': 'Malayalam',
+  'mt': 'Maltese',
+  'mi': 'Maori',
+  'mr': 'Marathi',
+  'mn': 'Mongolian',
+  'my': 'Myanmar (Burmese)',
+  'ne': 'Nepali',
+  'no': 'Norwegian',
+  'ps': 'Pashto',
+  'fa': 'Persian',
+  'pl': 'Polish',
+  'pt': 'Portuguese',
+  'pa': 'Punjabi',
+  'ro': 'Romanian',
+  'ru': 'Russian',
+  'sm': 'Samoan',
+  'gd': 'Scots Gaelic',
+  'sr': 'Serbian',
+  'st': 'Sesotho',
+  'sn': 'Shona',
+  'sd': 'Sindhi',
+  'si': 'Sinhala',
+  'sk': 'Slovak',
+  'sl': 'Slovenian',
+  'so': 'Somali',
+  'es': 'Spanish',
+  'su': 'Sundanese',
+  'sw': 'Swahili',
+  'sv': 'Swedish',
+  'tg': 'Tajik',
+  'ta': 'Tamil',
+  'te': 'Telugu',
+  'th': 'Thai',
+  'tr': 'Turkish',
+  'uk': 'Ukrainian',
+  'ur': 'Urdu',
+  'uz': 'Uzbek',
+  'ug': 'Uyghur',
+  'vi': 'Vietnamese',
+  'cy': 'Welsh',
+  'xh': 'Xhosa',
+  'yi': 'Yiddish',
+  'yo': 'Yoruba',
+  'zu': 'Zulu'
+};
+
+TextRecognitionScript? giveTextRecognitionScriptForLanguage(
+  String languageCode,
+) {
+  switch (languageCode) {
+    case 'af':
+    case 'sq':
+    case 'az':
+    case 'eu':
+    case 'bs':
+    case 'ca':
+    case 'ceb':
+    case 'ny':
+    case 'hr':
+    case 'cs':
+    case 'da':
+    case 'nl':
+    case 'en':
+    case 'eo':
+    case 'et':
+    case 'tl':
+    case 'fi':
+    case 'fr':
+    case 'fy':
+    case 'gl':
+    case 'de':
+    case 'ht':
+    case 'ha':
+    case 'haw':
+    case 'hu':
+    case 'is':
+    case 'ig':
+    case 'id':
+    case 'ga':
+    case 'it':
+    case 'jv':
+    case 'la':
+    case 'lv':
+    case 'lt':
+    case 'mg':
+    case 'ms':
+    case 'mt':
+    case 'mi':
+    case 'no':
+    case 'pl':
+    case 'pt':
+    case 'ro':
+    case 'sm':
+    case 'gd':
+    case 'sr':
+    case 'st':
+    case 'sn':
+    case 'sk':
+    case 'sl':
+    case 'es':
+    case 'su':
+    case 'sw':
+    case 'sv':
+    case 'tr':
+    case 'uz':
+    case 'vi':
+    case 'cy':
+    case 'xh':
+    case 'yo':
+    case 'zu':
+      return TextRecognitionScript.latin;
+    case 'zh-cn':
+    case 'zh-tw':
+      return TextRecognitionScript.chinese;
+    case 'hi':
+    case 'mr':
+    case 'ne':
+      return TextRecognitionScript.devanagiri;
+    case 'ja':
+      return TextRecognitionScript.japanese;
+    case 'ko':
+      return TextRecognitionScript.korean;
+
+    default:
+      return null;
+  }
+}
+
+const Map<String, String> speechRecognitionLocales = {
+  'en': 'en-US',
+  'es': 'es-ES',
+  'fr': 'fr-FR',
+  'de': 'de-DE',
+  'it': 'it-IT',
+  'pt': 'pt-PT',
+  'ru': 'ru-RU',
+  'ja': 'ja-JP',
+  'ko': 'ko-KR',
+  'zh': 'zh-CN',
+  'ar': 'ar-SA',
+  'hi': 'hi-IN',
+  'th': 'th-TH',
+  'vi': 'vi-VN',
+  'nl': 'nl-NL',
+  'sv': 'sv-SE',
+  'da': 'da-DK',
+  'no': 'nb-NO',
+  'fi': 'fi-FI',
+  'pl': 'pl-PL',
+  'cs': 'cs-CZ',
+  'sk': 'sk-SK',
+  'hu': 'hu-HU',
+  'ro': 'ro-RO',
+  'bg': 'bg-BG',
+  'hr': 'hr-HR',
+  'sl': 'sl-SI',
+  'et': 'et-EE',
+  'lv': 'lv-LV',
+  'lt': 'lt-LT',
+  'el': 'el-GR',
+  'tr': 'tr-TR',
+  'he': 'he-IL',
+  'fa': 'fa-IR',
+  'ur': 'ur-PK',
+  'bn': 'bn-BD',
+  'ta': 'ta-IN',
+  'te': 'te-IN',
+  'ml': 'ml-IN',
+  'kn': 'kn-IN',
+  'gu': 'gu-IN',
+  'pa': 'pa-IN',
+  'mr': 'mr-IN',
+  'ne': 'ne-NP',
+  'si': 'si-LK',
+  'my': 'my-MM',
+  'km': 'km-KH',
+  'lo': 'lo-LA',
+  'ka': 'ka-GE',
+  'am': 'am-ET',
+  'sw': 'sw-KE',
+  'zu': 'zu-ZA',
+  'af': 'af-ZA',
+  'sq': 'sq-AL',
+  'az': 'az-AZ',
+  'be': 'be-BY',
+  'bs': 'bs-BA',
+  'eu': 'eu-ES',
+  'ca': 'ca-ES',
+  'cy': 'cy-GB',
+  'fo': 'fo-FO',
+  'ga': 'ga-IE',
+  'gd': 'gd-GB',
+  'gl': 'gl-ES',
+  'is': 'is-IS',
+  'mk': 'mk-MK',
+  'mt': 'mt-MT',
+  'mn': 'mn-MN',
+  'sr': 'sr-RS',
+  'uk': 'uk-UA',
+  'uz': 'uz-UZ',
+};
+
+const Map<String, String> ttsLanguageMap = {
+  'en': 'en-US',
+  'es': 'es-ES',
+  'fr': 'fr-FR',
+  'de': 'de-DE',
+  'it': 'it-IT',
+  'pt': 'pt-PT',
+  'ru': 'ru-RU',
+  'ja': 'ja-JP',
+  'ko': 'ko-KR',
+  'zh': 'zh-CN',
+  'ar': 'ar-SA',
+  'hi': 'hi-IN',
+  'th': 'th-TH',
+  'vi': 'vi-VN',
+  'nl': 'nl-NL',
+  'sv': 'sv-SE',
+  'da': 'da-DK',
+  'no': 'nb-NO',
+  'fi': 'fi-FI',
+  'pl': 'pl-PL',
+  'cs': 'cs-CZ',
+  'sk': 'sk-SK',
+  'hu': 'hu-HU',
+  'ro': 'ro-RO',
+  'bg': 'bg-BG',
+  'hr': 'hr-HR',
+  'sl': 'sl-SI',
+  'et': 'et-EE',
+  'lv': 'lv-LV',
+  'lt': 'lt-LT',
+  'el': 'el-GR',
+  'tr': 'tr-TR',
+  'he': 'he-IL',
+  'fa': 'fa-IR',
+  'ur': 'ur-PK',
+  'bn': 'bn-BD',
+  'ta': 'ta-IN',
+  'te': 'te-IN',
+  'ml': 'ml-IN',
+  'kn': 'kn-IN',
+  'gu': 'gu-IN',
+  'pa': 'pa-IN',
+  'mr': 'mr-IN',
+  'ne': 'ne-NP',
+  'si': 'si-LK',
+  'my': 'my-MM',
+  'km': 'km-KH',
+  'lo': 'lo-LA',
+  'ka': 'ka-GE',
+  'am': 'am-ET',
+  'sw': 'sw-KE',
+  'zu': 'zu-ZA',
+  'af': 'af-ZA',
+  'sq': 'sq-AL',
+  'az': 'az-AZ',
+  'be': 'be-BY',
+  'bs': 'bs-BA',
+  'eu': 'eu-ES',
+  'ca': 'ca-ES',
+  'cy': 'cy-GB',
+  'fo': 'fo-FO',
+  'ga': 'ga-IE',
+  'gd': 'gd-GB',
+  'gl': 'gl-ES',
+  'is': 'is-IS',
+  'mk': 'mk-MK',
+  'mt': 'mt-MT',
+  'mn': 'mn-MN',
+  'sr': 'sr-RS',
+  'uk': 'uk-UA',
+  'uz': 'uz-UZ',
+};
+
+String getSpeechRecognitionLocale(String languageCode) {
+  return speechRecognitionLocales[languageCode] ?? 'en-US';
+}
+
+String getTtsLocale(String languageCode) {
+  return ttsLanguageMap[languageCode] ?? 'ro-RO';
+}
+
+
+
+
